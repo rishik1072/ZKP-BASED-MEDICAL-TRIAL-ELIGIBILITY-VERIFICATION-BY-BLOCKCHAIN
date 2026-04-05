@@ -1,0 +1,51 @@
+node_modules/
+dist/
+.DS_Store
+*.log
+.env
+.env.local
+.env.*.local
+*.pem
+*.key
+
+# Backend
+backend/dist/
+backend/logs/
+backend/.nodemon.json
+
+# Frontend
+frontend/dist/
+frontend/.cache/
+
+# Circuits
+circuits/dist/
+circuits/pot*.ptau
+circuits/*.wasm
+circuits/*.zkey
+circuits/*.r1cs
+circuits/.cache/
+
+# Contracts
+contracts/artifacts/
+contracts/cache/
+contracts/deployments/
+contracts/.openzeppelin/
+
+# IDE
+.vscode/settings.json
+.idea/
+*.swp
+*.swo
+*~
+
+# OS
+.DS_Store
+Thumbs.db
+
+# Git
+.git/
+
+# Temporary
+tmp/
+temp/
+*.tmp

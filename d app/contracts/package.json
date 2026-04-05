@@ -1,0 +1,23 @@
+{
+  "name": "medical-zkp-contracts",
+  "version": "1.0.0",
+  "description": "Solidity smart contracts for medical eligibility verification",
+  "scripts": {
+    "compile": "hardhat compile",
+    "test": "hardhat test",
+    "deploy:local": "hardhat run scripts/deploy.js --network localhost",
+    "deploy:polygon": "hardhat run scripts/deploy.js --network polygon",
+    "deploy:mumbai": "hardhat run scripts/deploy.js --network mumbai",
+    "verify": "hardhat verify"
+  },
+  "devDependencies": {
+    "@nomicfoundation/hardhat-toolbox": "^3.0.0",
+    "@nomicfoundation/hardhat-verify": "^1.0.0",
+    "hardhat": "^2.19.4",
+    "@openzeppelin/contracts": "^5.0.0",
+    "dotenv": "^16.3.1"
+  },
+  "dependencies": {
+    "ethers": "^6.10.0"
+  }
+}
