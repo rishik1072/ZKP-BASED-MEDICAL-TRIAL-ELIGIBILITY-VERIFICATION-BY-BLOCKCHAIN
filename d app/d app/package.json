@@ -1,0 +1,28 @@
+{
+  "name": "medical-zkp-blockchain",
+  "version": "1.0.0",
+  "description": "ZKP-Based Medical Trial Eligibility Verification using Blockchain",
+  "main": "index.js",
+  "workspaces": [
+    "backend",
+    "frontend",
+    "circuits"
+  ],
+  "scripts": {
+    "setup:all": "npm install && npm run setup:backend && npm run setup:frontend && npm run setup:circuits && npm run setup:contracts",
+    "setup:backend": "cd backend && npm install",
+    "setup:frontend": "cd frontend && npm install",
+    "setup:circuits": "cd circuits && npm install",
+    "setup:contracts": "cd contracts && npm install",
+    "dev": "npm run dev:backend & npm run dev:frontend",
+    "dev:backend": "cd backend && npm run dev",
+    "dev:frontend": "cd frontend && npm run dev",
+    "build": "npm run build:circuits && npm run build:backend && npm run build:frontend && npm run build:contracts",
+    "build:backend": "cd backend && npm run build",
+    "build:frontend": "cd frontend && npm run build",
+    "build:circuits": "cd circuits && npm run build",
+    "build:contracts": "cd contracts && npm run build"
+  },
+  "keywords": ["zkp", "blockchain", "medical", "circom", "solidity"],
+  "license": "MIT"
+}
