@@ -423,7 +423,11 @@ router.post("/store-on-chain", async (req: Request, res: Response) => {
       return res.json({
         success: true,
         data: blockchainResult,
-        message: `✅ Proof stored on REAL Polygon Mainnet blockchain!`,
+        message: `✅ Proof stored on REAL Sepolia ETH Testnet blockchain!`,
+
+              TIP: Sepolia ETH is the Ethereum testnet. Get testnet ETH from faucets like
+              https://www.alchemy.com/faucets/ethereum-sepolia or
+              https://sepoliafaucet.com`,
       });
     } catch (blockchainError) {
       // If user provided private key, show the real error - don't fall back to mock

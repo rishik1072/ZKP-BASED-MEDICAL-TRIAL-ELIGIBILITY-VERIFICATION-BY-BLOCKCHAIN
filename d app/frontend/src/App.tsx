@@ -1,4 +1,4 @@
-import { useState } from "react";
+import { useState, useEffect, useRef } from "react";
 import { motion } from "framer-motion";
 import { useVerificationStore } from "./store/verificationStore";
 import { Stepper } from "./components";
@@ -15,6 +15,20 @@ export default function App() {
   const [testType, setTestType] = useState<string>("");
   const [proofResult, setProofResult] = useState<any>(null);
   const { setPrivateKey } = useVerificationStore();
+  const videoRef = useRef<HTMLVideoElement>(null);
+
+  // Handle autoplay
+  useEffect(() => {
+    if (videoRef.current) {
+      const playPromise = videoRef.current.play();
+      if (playPromise !== undefined) {
+        playPromise.catch((error) => {
+          console.warn("Video autoplay failed:", error);
+          // Video will still work, just won't autoplay
+        });
+      }
+    }
+  }, []);
 
   const handleUploadComplete = (cred: any, privateKey?: string) => {
     setCredential(cred);
@@ -46,13 +60,16 @@ export default function App() {
     <div className="min-h-screen bg-gradient-to-br from-primary-600 via-purple-600 to-pink-500 py-8 px-4 relative overflow-hidden">
       {/* Background Video */}
       <video
+        ref={videoRef}
         className="fixed inset-0 w-full h-full object-cover -z-10 opacity-30"
-        autoPlay
         loop
         muted
         playsInline
+        preload="metadata"
+        onError={(e) => console.error("Video error:", e)}
+        crossOrigin="anonymous"
       >
-        <source src="/bg-video.mp4" type="video/mp4" />
+        <source src="/bg-video.mp4" type="video/mp4; codecs='avc1.42E01E'" />
       </video>
       <motion.div
         initial={{ opacity: 0 }}

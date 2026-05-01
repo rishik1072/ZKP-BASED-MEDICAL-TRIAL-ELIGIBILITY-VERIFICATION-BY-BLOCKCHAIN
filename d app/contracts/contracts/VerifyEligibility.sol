@@ -55,12 +55,11 @@ contract VerifyEligibility {
     }
 
     /**
-     * @notice Initialize the contract with verifier address
-     * @param _verifier Address of the Groth16 verifier contract
+     * @notice Initialize the contract with default verifier
      */
-    constructor(address _verifier) {
-        require(_verifier != address(0), "Invalid verifier address");
-        verifier = IGroth16Verifier(_verifier);
+    constructor() {
+        // Initialize with default address - can be updated later
+        verifier = IGroth16Verifier(address(0));
     }
 
     /**

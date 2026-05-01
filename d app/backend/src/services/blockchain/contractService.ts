@@ -13,7 +13,8 @@ let signer: ethers.Wallet;
 
 export function initializeBlockchainService(): void {
   try {
-    const rpcUrl = process.env.POLYGON_RPC_URL || "https://polygon-rpc.com";
+    const rpcUrl =
+      process.env.SEPOLIA_RPC_URL || "https://rpc.ankr.com/eth_sepolia";
     const privateKey = process.env.PRIVATE_KEY_BLOCKCHAIN || "";
     const contractAddress = process.env.SMART_CONTRACT_ADDRESS || "";
 
@@ -28,9 +29,10 @@ export function initializeBlockchainService(): void {
     signer = new ethers.Wallet(privateKey, provider);
     contract = new ethers.Contract(contractAddress, VERIFIER_ABI, signer);
 
-    logger.info("✅ Blockchain service initialized");
+    logger.info("✅ Blockchain service initialized - Sepolia ETH");
     logger.debug(`Contract: ${contractAddress}`);
-    logger.debug(`Network: ${process.env.CHAIN_ID}`);
+    logger.debug(`Network: Sepolia (Chain ID: 11155111)`);
+    logger.debug(`RPC URL: ${rpcUrl}`);
   } catch (error) {
     logger.error("Failed to initialize blockchain service:", error);
   }
@@ -83,7 +85,7 @@ export async function verifyAndStoreProof(
     logger.info(`📋 Eligible: ${eligible}, Hash: ${credentialHashBytes32}`);
 
     // Send transaction to contract
-    logger.info("🔗 Submitting transaction to Polygon Mainnet...");
+    logger.info("🔗 Submitting transaction to Sepolia Testnet...");
     const tx = await contractToUse.storeResult(credentialHashBytes32, eligible);
 
     logger.info(`⏳ Waiting for confirmation... TX: ${tx.hash}`);
